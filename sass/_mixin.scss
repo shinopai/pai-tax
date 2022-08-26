@@ -1,3 +1,5 @@
+@import "_breakpoints";
+
 /* basic orange button */
 @mixin orange-btn {
   color: #fff;
@@ -49,4 +51,19 @@
 @mixin section-bg-img($image) {
   background: url($image) no-repeat;
   background-size: cover;
+}
+
+/* media query */
+@mixin mq($breakpoint) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+/* basic section padding x-axis */
+@mixin section-padding-x {
+  padding: 5% 0;
+  @include mq(sm) {
+    padding: 10% 0;
+  }
 }

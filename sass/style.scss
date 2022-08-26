@@ -53,6 +53,26 @@ em {
   margin-top: 0;
   text-align: center;
   letter-spacing: 0.1em;
+  @include mq(sm) {
+    font-size: min(6.56vw, 4.5rem);
+  }
+}
+.wrap {
+  padding: 0 5%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.sm-only {
+  display: none;
+  @include mq(sm) {
+    display: block;
+  }
+}
+.pc-only {
+  display: block;
+  @include mq(sm) {
+    display: none;
+  }
 }
 
 /* basic color */
@@ -63,17 +83,50 @@ $basic-blue: #005bac;
   background-color: #fff;
   box-shadow: 0 2px 18px rgba(0, 0, 0, 9%);
   &__inner {
-    padding: 10px 5%;
+    padding-top: 10px;
+    padding-bottom: 10px;
     justify-content: space-between;
     align-items: center;
   }
   &__logo {
     width: 110px;
+    @include mq(sm) {
+      width: min(30%, 110px);
+    }
   }
   &__link--orange {
     @include orange-btn();
     font-size: 2.5rem;
     width: 35%;
+    @include mq(sm) {
+      font-size: min(3.43vw, 1.5rem);
+      width: min(50%, 200px);
+      &::after {
+        font-size: 15px;
+        top: calc(50% - 17px / 2);
+        right: 0.2em;
+      }
+    }
+  }
+}
+
+/* back to top button */
+#back-btn {
+  width: 144px;
+  height: 32px;
+  opacity: 0.7;
+  cursor: pointer;
+  position: fixed;
+  right: 15px;
+  bottom: 40px;
+  z-index: 1;
+  &:hover {
+    opacity: 1;
+  }
+  @include mq(sm) {
+    width: 50px;
+    height: 50px;
+    bottom: 30px;
   }
 }
 
@@ -94,7 +147,7 @@ $basic-blue: #005bac;
   }
   &__inner {
     flex-direction: column;
-    padding: 5% 0;
+    @include section-padding-x();
     gap: 15px;
   }
   &__flex-item {
@@ -105,10 +158,16 @@ $basic-blue: #005bac;
       align-items: baseline;
       figure {
         width: 40%;
+        @include mq(sm) {
+          width: min(70%, 260px);
+        }
+      }
+      @include mq(sm) {
+        flex-direction: column;
+        align-items: center;
       }
     }
     &.second {
-      width: 90%;
       gap: 20px;
       justify-content: center;
       position: relative;
@@ -117,10 +176,16 @@ $basic-blue: #005bac;
         img:last-child {
           width: 30%;
         }
+        @include mq(sm) {
+          width: 80%;
+        }
       }
       .after {
         img {
           margin-top: 25px;
+        }
+        @include mq(sm) {
+          width: 50%;
         }
       }
       &::after {
@@ -131,19 +196,33 @@ $basic-blue: #005bac;
         height: 58px;
         position: absolute;
         bottom: -70px;
+        @include mq(sm) {
+          width: 40px;
+          height: 40px;
+          bottom: -40px;
+        }
+      }
+      @include mq(sm) {
+        flex-direction: column;
+        align-items: center;
       }
     }
     &.third {
-      width: 90%;
       gap: 25px;
       margin-top: 60px;
       div {
         width: 50%;
         text-align: center;
+        @include mq(sm) {
+          width: 100%;
+        }
+      }
+      @include mq(sm) {
+        flex-direction: column-reverse;
+        margin-top: 40px;
       }
     }
     &.fourth {
-      width: 90%;
       justify-content: space-between;
       margin-top: 50px;
       div {
@@ -153,6 +232,14 @@ $basic-blue: #005bac;
         align-items: center;
         background-color: #fff;
         border-radius: 10px;
+        @include mq(sm) {
+          width: min(100%, 450px);
+          margin: 0 auto;
+        }
+      }
+      @include mq(sm) {
+        flex-direction: column;
+        gap: 75px;
       }
     }
   }
@@ -165,28 +252,58 @@ $basic-blue: #005bac;
     text-align: center;
     span {
       font-size: 1.7em;
+      @include mq(sm) {
+        font-size: 1.6em;
+      }
+    }
+    @include mq(sm) {
+      font-size: min(8.75vw, 4.8rem);
     }
   }
   &__label {
     font-size: 2.6rem;
     font-weight: 700;
     margin-bottom: 13px;
+    @include mq(sm) {
+      font-size: min(4.37vw, 2.6rem);
+    }
   }
   &__link--white {
     @include white-btn();
     font-size: 2.4rem;
     padding: 25px 10px;
     letter-spacing: 0.1em;
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+      max-width: 600px;
+      margin: 0 auto;
+      &::after {
+        font-size: 20px;
+        top: calc(50% - 22px / 2);
+      }
+    }
   }
   &__link--orange {
     @include orange-btn();
     font-size: 2.4rem;
     padding: 25px 10px;
     letter-spacing: 0.1em;
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+      max-width: 600px;
+      margin: 0 auto;
+      &::after {
+        font-size: 20px;
+        top: calc(50% - 22px / 2);
+      }
+    }
   }
   &__text {
     font-size: 2.2rem;
     text-align: center;
+    @include mq(sm) {
+      font-size: min(3.43vw, 2.2rem);
+    }
   }
   &__img--user {
     position: relative;
@@ -194,6 +311,10 @@ $basic-blue: #005bac;
     background-color: transparent;
     width: 132px;
     height: 132px;
+    @include mq(sm) {
+      width: 110px;
+      height: 110px;
+    }
   }
   &__voice {
     font-size: 2.4rem;
@@ -205,6 +326,9 @@ $basic-blue: #005bac;
       font-size: inherit;
       background: linear-gradient(transparent 70%, #fff0e5 0%);
     }
+    @include mq(sm) {
+      font-size: min(5vw, 2.4rem);
+    }
   }
   &__icon--dot {
     width: 18px;
@@ -213,13 +337,16 @@ $basic-blue: #005bac;
   &__name {
     font-size: 2.1rem;
     color: $basic-blue;
+    @include mq(sm) {
+      font-size: min(4.37vw, 2.1rem);
+    }
   }
 }
 
 /* problem */
 .problem {
   @include section-bg-img("../images/bg_front02.png");
-  padding: 5% 0;
+  @include section-padding-x();
   &__img {
     img {
       width: 80%;
@@ -231,10 +358,19 @@ $basic-blue: #005bac;
     text-align: center;
     margin-top: 60px;
     margin-bottom: 30px;
+    @include mq(sm) {
+      font-size: min(5.62vw, 2.8rem);
+      margin-bottom: 15px;
+    }
   }
   &__icon {
     width: 8px;
     height: 34px;
+    @include mq(sm) {
+      width: min(1.56vw, 8px);
+      height: min(9.37vw, 34px);
+      margin-bottom: 30px;
+    }
   }
 }
 
@@ -251,11 +387,14 @@ $basic-blue: #005bac;
   &__img {
     width: 70%;
     margin-top: -50px;
+    @include mq(sm) {
+      width: 100%;
+      max-width: 450px;
+    }
   }
   &__flex-item {
     flex-wrap: wrap;
-    width: 90%;
-    margin: 20px auto 0;
+    margin-top: 20px;
     justify-content: space-between;
     gap: 105px 0;
     .flex {
@@ -265,10 +404,22 @@ $basic-blue: #005bac;
       border-radius: 10px;
       align-items: center;
       gap: 15px;
+      @include mq(sm) {
+        width: min(100%, 550px);
+      }
+    }
+    @include mq(sm) {
+      margin-top: 40px;
+      flex-direction: column;
+      gap: 45px 0;
     }
   }
   &__img--number {
     margin-top: -50px;
+    @include mq(sm) {
+      width: 80%;
+      margin-top: -30px;
+    }
   }
   &__text--blue {
     font-size: 2.8rem;
@@ -276,6 +427,9 @@ $basic-blue: #005bac;
     color: $basic-blue;
     margin: 0;
     text-align: center;
+    @include mq(sm) {
+      font-size: min(5.62vw, 2.8rem);
+    }
   }
   &__line {
     width: 90%;
@@ -284,6 +438,9 @@ $basic-blue: #005bac;
   }
   &__text--normal {
     font-size: 2.3rem;
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.3rem);
+    }
   }
 }
 
@@ -292,10 +449,9 @@ $basic-blue: #005bac;
   @include section-bg-img("../images/bg_front03.png");
   background-size: contain;
   margin-top: 11px;
-  padding: 5% 0;
+  @include section-padding-x();
   &__flex-item {
     flex-wrap: wrap;
-    width: 90%;
     justify-content: space-between;
     gap: 40px 0;
     .flex {
@@ -307,6 +463,12 @@ $basic-blue: #005bac;
       box-shadow: 0 0 27px rgba(210, 230, 240, 80%);
       border-radius: 10px;
       padding: 20px 0;
+      @include mq(sm) {
+        width: 48%;
+      }
+    }
+    @include mq(sm) {
+      max-width: 500px;
     }
   }
   &__img {
@@ -318,10 +480,16 @@ $basic-blue: #005bac;
       font-size: inherit;
       font-weight: 700;
     }
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.3rem);
+    }
   }
   &__img--woman {
     width: 50%;
     margin-top: 50px;
+    @include mq(sm) {
+      width: min(100%, 500px);
+    }
   }
   &__text--blue {
     text-align: center;
@@ -329,24 +497,33 @@ $basic-blue: #005bac;
     font-weight: 700;
     margin-top: 0rem;
     color: $basic-blue;
+    @include mq(sm) {
+      font-size: min(4.62vw, 2.8rem);
+    }
   }
   &__text--normal {
     text-align: center;
     font-size: 2.4rem;
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+    }
   }
 }
 
 /* cta */
 .cta {
   @include section-bg-img("../images/bg_front04.png");
-  padding: 5% 0;
+  @include section-padding-x();
   &__flex-item {
-    width: 90%;
     gap: 20px;
     &.after {
       margin-top: 30px;
       justify-content: center;
       gap: 25px;
+    }
+    @include mq(sm) {
+      flex-direction: column;
+      align-items: center;
     }
   }
   &__img {
@@ -356,6 +533,9 @@ $basic-blue: #005bac;
         width: 45%;
       }
     }
+    @include mq(sm) {
+      width: min(90%, 500px);
+    }
   }
   &__link--white {
     @include white-btn();
@@ -363,6 +543,15 @@ $basic-blue: #005bac;
     font-size: 2.4rem;
     padding: 25px 10px;
     letter-spacing: 0.1em;
+    @include mq(sm) {
+      width: min(100%, 550px);
+      font-size: min(3.75vw, 2.3rem);
+      &::after {
+        font-size: 25px;
+        top: calc(50% - 25px / 2);
+        right: 0.2em;
+      }
+    }
   }
   &__link--orange {
     @include orange-btn();
@@ -370,18 +559,30 @@ $basic-blue: #005bac;
     font-size: 2.4rem;
     padding: 25px 10px;
     letter-spacing: 0.1em;
+    @include mq(sm) {
+      width: min(100%, 550px);
+      font-size: min(3.75vw, 2.3rem);
+      &::after {
+        font-size: 25px;
+        top: calc(50% - 25px / 2);
+        right: 0.2em;
+      }
+    }
   }
   &__text {
     font-size: 2.2rem;
     margin-top: 30px;
     text-align: center;
+    @include mq(sm) {
+      font-size: min(3.43vw, 2.2rem);
+    }
   }
 }
 
 /* trust */
 .trust {
   background-color: #fff7eb;
-  padding: 5% 0;
+  @include section-padding-x();
   &__heading {
     position: relative;
     width: 75%;
@@ -390,16 +591,27 @@ $basic-blue: #005bac;
       position: absolute;
       top: 49px;
       right: 143px;
+      @include mq(sm) {
+        top: 51px;
+        right: 58px;
+      }
     }
   }
   &__flex-item {
     margin-top: 50px;
-    width: 90%;
     justify-content: space-between;
     align-items: center;
+    @include mq(sm) {
+      flex-direction: column;
+      gap: 20px;
+    }
   }
   &__img {
-    width: 45%;
+    width: 46%;
+    @include mq(sm) {
+      width: min(100%, 550px);
+      margin: 0 auto;
+    }
   }
   &__icon {
     i {
@@ -413,9 +625,8 @@ $basic-blue: #005bac;
 .recommend {
   background-size: 12px 12px;
   background-image: radial-gradient(#ebebeb 10%, transparent 10%);
-  padding: 5% 0;
+  @include section-padding-x();
   &__flex-item {
-    width: 90%;
     margin-top: 30px;
     justify-content: space-between;
     .flex {
@@ -423,6 +634,12 @@ $basic-blue: #005bac;
       flex-direction: column;
       text-align: center;
       gap: 25px;
+      @include mq(sm) {
+        width: 100%;
+      }
+    }
+    @include mq(sm) {
+      flex-direction: column;
     }
   }
   &__label {
@@ -463,6 +680,12 @@ $basic-blue: #005bac;
       top: 100%;
       left: 50%;
     }
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.3rem);
+      padding: 20px;
+      width: min(80%, 450px);
+      margin: 0 auto;
+    }
   }
   &__img {
     width: 35%;
@@ -470,6 +693,9 @@ $basic-blue: #005bac;
   &__text--name {
     font-size: 2rem;
     font-weight: 700;
+    @include mq(sm) {
+      font-size: min(4.68vw, 2rem);
+    }
   }
 }
 
@@ -477,13 +703,12 @@ $basic-blue: #005bac;
 .usage {
   background-size: 12px 12px;
   background-image: radial-gradient(#ebebeb 10%, transparent 10%);
-  padding: 5% 0;
+  @include section-padding-x();
   &__flex-item {
-    margin: 50px auto 0;
+    margin-top: 50px;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 50px;
-    width: 90%;
     .flex {
       width: 47%;
       background-color: #e5f3fa;
@@ -491,10 +716,17 @@ $basic-blue: #005bac;
       border-radius: 20px;
       align-items: center;
       padding: 25px 0;
+      @include mq(sm) {
+        width: min(100%, 550px);
+        margin: 0 auto;
+      }
     }
   }
   &__img {
     width: 80%;
+    @include mq(sm) {
+      max-width: 400px;
+    }
   }
   &__text {
     font-size: 2.3rem;
@@ -503,16 +735,22 @@ $basic-blue: #005bac;
       font-size: inherit;
       font-weight: 700;
     }
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.3rem);
+    }
   }
 }
 
 /* e-Tax */
 .e-tax {
   @include section-bg-img("../images/bg_front05.png");
-  padding: 5% 0;
+  @include section-padding-x();
   margin-top: 11px;
   &__img {
     width: 50%;
+    @include mq(sm) {
+      width: min(100%, 500px);
+    }
   }
   &__text {
     font-size: 2.4rem;
@@ -521,6 +759,13 @@ $basic-blue: #005bac;
     &.last {
       font-size: 2rem;
       margin-bottom: initial;
+      @include mq(sm) {
+        font-size: min(3.43vw, 2rem);
+      }
+    }
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+      margin-bottom: 20px;
     }
   }
   &__text--blue {
@@ -532,6 +777,10 @@ $basic-blue: #005bac;
       font-size: inherit;
       background: linear-gradient(transparent 70%, #fff0e5 0%);
     }
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+      margin-bottom: 20px;
+    }
   }
 }
 
@@ -540,14 +789,17 @@ $basic-blue: #005bac;
   background-color: rgba(255, 247, 235, 0.98);
   background-image: linear-gradient(-90deg, #fff 50%, transparent 50%);
   background-size: 9px 9px;
-  padding: 5% 0;
+  @include section-padding-x();
   margin-top: 11px;
   &__flex-item {
     background-color: #fff;
     padding: 40px;
     border-radius: 30px;
-    width: 90%;
     align-items: center;
+    @include mq(sm) {
+      flex-direction: column;
+      padding: 15px;
+    }
   }
   &__img {
     width: 28%;
@@ -556,6 +808,19 @@ $basic-blue: #005bac;
       position: absolute;
       top: -157px;
       right: 25px;
+      max-width: 300px;
+      @include mq(sm) {
+        top: initial;
+        position: static;
+      }
+    }
+    @include mq(sm) {
+      width: min(50%, 200px);
+    }
+  }
+  &__list {
+    @include mq(sm) {
+      margin-top: 30px;
     }
   }
   &__list-item {
@@ -576,10 +841,21 @@ $basic-blue: #005bac;
       position: absolute;
       left: 0;
       top: calc(50% - 30px / 2);
+      @include mq(sm) {
+        width: 20px;
+        height: 20px;
+        top: 5px;
+      }
     }
     em {
       color: #ff8228;
       font-size: inherit;
+    }
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.3rem);
+      line-height: 1.8;
+      padding-left: 30px;
+      padding-bottom: 10px;
     }
   }
   & + .cta {
@@ -592,7 +868,7 @@ $basic-blue: #005bac;
   @include section-bg-img("../images/bg_front06.png");
   background-size: contain;
   background-position: top;
-  padding: 5% 0;
+  @include section-padding-x();
   &__icon--attention {
     width: 109px;
     height: 45px;
@@ -603,13 +879,18 @@ $basic-blue: #005bac;
   &__text {
     font-size: 2.4rem;
     text-align: center;
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+    }
   }
   &__flex-item {
     margin-top: 50px;
-    width: 90%;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 50px 0;
+    @include mq(sm) {
+      max-width: 450px;
+    }
   }
   &__icon-wrap {
     background-color: #e5f3fa;
@@ -631,17 +912,29 @@ $basic-blue: #005bac;
       font-weight: 700;
       margin-top: 20px;
       letter-spacing: 0.1em;
+      @include mq(sm) {
+        font-size: min(3.75vw, 2.3rem);
+      }
+    }
+    @include mq(sm) {
+      width: 45%;
     }
   }
   &__img {
     width: 60%;
     margin-top: 50px;
+    @include mq(sm) {
+      width: min(100%, 500px);
+    }
   }
   &__text--big {
     font-size: 4.5rem;
     font-weight: 700;
     text-align: center;
     margin-top: 0;
+    @include mq(sm) {
+      font-size: min(8.12vw, 4.5rem);
+    }
   }
 }
 
@@ -657,18 +950,27 @@ $basic-blue: #005bac;
       position: absolute;
       top: -50%;
     }
+    @include mq(sm) {
+      width: 100px;
+      height: 93px;
+    }
   }
   &__heading {
     margin-top: -50px;
     margin-bottom: 10px;
+    @include mq(sm) {
+      padding-top: 20px;
+    }
   }
   &__text {
     font-size: 2.4rem;
     text-align: center;
     margin-top: 0;
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+    }
   }
   &__flex-item {
-    width: 90%;
     margin-top: 50px;
     justify-content: space-between;
     .flex {
@@ -676,6 +978,13 @@ $basic-blue: #005bac;
       width: 48%;
       background-color: #fff;
       border-radius: 20px;
+      @include mq(sm) {
+        width: 100%;
+      }
+    }
+    @include mq(sm) {
+      flex-direction: column;
+      gap: 35px;
     }
   }
   &__flex-heading {
@@ -688,9 +997,15 @@ $basic-blue: #005bac;
     padding: 30px;
     letter-spacing: 0.1em;
     border-radius: 20px 20px 0 0;
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+    }
   }
   &__flex-img {
     width: 50%;
+    @include mq(sm) {
+      max-width: 200px;
+    }
   }
   &__flex-text {
     font-size: 2.4rem;
@@ -699,6 +1014,10 @@ $basic-blue: #005bac;
     em {
       font-size: inherit;
       font-weight: 700;
+    }
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+      padding: 15px;
     }
   }
   &__list {
@@ -720,13 +1039,28 @@ $basic-blue: #005bac;
         top: 0;
         left: -12px;
         margin-top: 15px;
+        @include mq(sm) {
+          margin-top: 2%;
+          width: min(2.18vw, 12px);
+          height: min(2.18vw, 12px);
+        }
       }
+      @include mq(sm) {
+        font-size: min(3.75vw, 2.4rem);
+        padding-left: 2%;
+      }
+    }
+    @include mq(sm) {
+      padding: 20px 20px 0 30px;
     }
   }
   &__list-text {
     font-size: 2.4rem;
     margin-top: 0;
     padding: 20px;
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+    }
   }
   & + .cta {
     margin-top: 11px;
@@ -738,10 +1072,9 @@ $basic-blue: #005bac;
   background-color: rgba(229, 243, 250, 0.98);
   background-image: linear-gradient(-90deg, #feffff 50%, transparent 50%);
   background-size: 9px 9px;
-  padding: 5% 0;
+  @include section-padding-x();
   &__flex-item {
     margin-top: 50px;
-    width: 90%;
     justify-content: space-between;
     .flex {
       flex-direction: column;
@@ -749,6 +1082,12 @@ $basic-blue: #005bac;
       background-color: #fff;
       border-radius: 20px;
       padding-bottom: 30px;
+      @include mq(sm) {
+        width: 100%;
+      }
+    }
+    @include mq(sm) {
+      flex-direction: column;
     }
   }
   &__flex-heading {
@@ -761,9 +1100,15 @@ $basic-blue: #005bac;
     padding: 30px;
     letter-spacing: 0.1em;
     border-radius: 20px 20px 0 0;
+    @include mq(sm) {
+      font-size: min(3.75vw, 2.4rem);
+    }
   }
   &__flex-img {
     width: 60%;
+    @include mq(sm) {
+      max-width: 200px;
+    }
   }
   &__caption {
     font-size: 2.8rem;
@@ -771,11 +1116,17 @@ $basic-blue: #005bac;
     margin-top: 30px;
     text-align: center;
     margin-bottom: 0;
+    @include mq(sm) {
+      font-size: min(4.36vw, 2.8rem);
+    }
   }
   &__title {
     font-size: 2rem;
     margin-top: 0;
     text-align: center;
+    @include mq(sm) {
+      font-size: min(3.12vw, 2rem);
+    }
   }
   &__line {
     width: 90%;
@@ -792,6 +1143,9 @@ $basic-blue: #005bac;
     em {
       font-size: 2.1em;
     }
+    @include mq(sm) {
+      font-size: min(5.2vw, 4.2rem);
+    }
   }
   &__catch--after {
     margin-top: 30px;
@@ -802,6 +1156,9 @@ $basic-blue: #005bac;
       align-items: center;
       gap: 10px;
       padding-bottom: 0;
+      @include mq(sm) {
+        flex-direction: column;
+      }
     }
     & + .plan__link--orange {
       margin-top: 40px;
@@ -811,9 +1168,16 @@ $basic-blue: #005bac;
     font-weight: 700;
     &.before {
       font-size: 2.2rem;
+      @include mq(sm) {
+        font-size: min(3.43vw, 2.2rem);
+      }
     }
     &.after {
       font-size: 1.8rem;
+      @include mq(sm) {
+        font-size: min(3.75vw, 1.8rem);
+        margin-bottom: 15px;
+      }
     }
   }
   &__desc-data {
@@ -821,6 +1185,9 @@ $basic-blue: #005bac;
     margin: 0;
     &.before {
       font-size: 2.8rem;
+      @include mq(sm) {
+        font-size: min(4.36vw, 2.8rem);
+      }
       span {
         &:first-of-type {
           font-size: 0.8em;
@@ -839,11 +1206,20 @@ $basic-blue: #005bac;
       em {
         font-size: 2.1em;
       }
+      @include mq(sm) {
+        font-size: min(5.06vw, 4.2rem);
+        margin-left: 0;
+      }
     }
   }
   &__icon {
     width: 28px;
     height: 30px;
+    @include mq(sm) {
+      transform: rotate(90deg);
+      width: 20px;
+      height: 21px;
+    }
   }
   &__link--orange {
     @include orange-btn();
@@ -851,6 +1227,14 @@ $basic-blue: #005bac;
     font-size: 2.4rem;
     padding: 20px;
     width: 70%;
+    @include mq(sm) {
+      width: 90%;
+      font-size: min(4.37vw, 2.4rem);
+      &::after {
+        font-size: 25px;
+        top: calc(50% - 25px / 2);
+      }
+    }
   }
   &__link--blue {
     color: $basic-blue;
@@ -861,12 +1245,14 @@ $basic-blue: #005bac;
     &:hover {
       color: #ff538c;
     }
+    @include mq(sm) {
+      font-size: min(3.75vw, 1.8rem);
+    }
   }
   &__note {
     border: 1px solid #030000;
-    width: 90%;
-    margin: 30px auto 0;
-    padding: 30px 26px;
+    margin-top: 30px;
+    padding: 30px 13px;
     text-align: center;
     .plan__link--blue {
       display: inline-block;
@@ -883,6 +1269,9 @@ $basic-blue: #005bac;
   }
   &__text--big {
     font-size: 1.8rem;
+    @include mq(sm) {
+      font-size: min(3.75vw, 1.8rem);
+    }
   }
   &__text--small {
     font-size: 1.6rem;
@@ -901,13 +1290,22 @@ $basic-blue: #005bac;
         height: 12px;
         display: inline-block;
       }
+      @include mq(sm) {
+        font-size: inherit;
+        padding-bottom: 2px;
+        margin-top: 0;
+      }
+    }
+    @include mq(sm) {
+      line-height: initial;
+      font-size: min(3.33vw, 1.6rem);
     }
   }
 }
 
 /* notice */
 .notice {
-  padding: 5% 0;
+  @include section-padding-x();
   &__list {
     padding: 0 5%;
   }
@@ -917,6 +1315,9 @@ $basic-blue: #005bac;
     padding-left: 1em;
     text-indent: -1em;
     line-height: 1.8;
+    @include mq(sm) {
+      font-size: min(3.33vw, 1.6rem);
+    }
   }
   &__number {
     font-size: inherit;
@@ -926,7 +1327,7 @@ $basic-blue: #005bac;
 /* footer */
 .footer {
   &__upper {
-    padding: 5% 0;
+    @include section-padding-x();
   }
   &__list {
     width: 90%;
@@ -941,6 +1342,9 @@ $basic-blue: #005bac;
     &:hover {
       color: #ff538c;
     }
+    @include mq(sm) {
+      font-size: min(3.11vw, 2rem);
+    }
   }
   &__lower {
     background-color: $basic-blue;
@@ -951,5 +1355,8 @@ $basic-blue: #005bac;
     font-size: 1.2rem;
     display: block;
     text-align: center;
+    @include mq(sm) {
+      font-size: min(3.125vw, 1.2rem);
+    }
   }
 }
